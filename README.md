@@ -1,39 +1,17 @@
-# create-svelte
+# SvelteKit + Node Adapter + Sentry Errors
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This repo demonstrates a failure with SvelteKit, Sentry, and the `adapter-node` build target.
 
-## Creating a project
+While the Sentry Wizard will install `@sentry/sveltekit` to `dependencies`, we want our build to be completely hermetic and have attempted to install it to `devDependencies`. This does not seem to be supported, as we get the following error: 
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```
+error during build:
+RollupError: Unexpected character '�'
+    at getRollupError (file:///Users/damon/Workspace/svelte-install-check/node_modules/rollup/dist/es/shared/parseAst.js:392:41)
+    at ParseError.initialise (file:///Users/damon/Workspace/svelte-install-check/node_modules/rollup/dist/es/shared/node-entry.js:11494:28)
+    at convertNode (file:///Users/damon/Workspace/svelte-install-check/node_modules/rollup/dist/es/shared/node-entry.js:13192:10)
+    at convertProgram (file:///Users/damon/Workspace/svelte-install-check/node_modules/rollup/dist/es/shared/node-entry.js:12536:12)
+    at Module.setSource (file:///Users/damon/Workspace/svelte-install-check/node_modules/rollup/dist/es/shared/node-entry.js:14355:24)
+    at async ModuleLoader.addModuleSource (file:///Users/damon/Workspace/svelte-install-check/node_modules/rollup/dist/es/shared/node-entry.js:19046:13)
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-# sveltekit-sentry-node-build-error
